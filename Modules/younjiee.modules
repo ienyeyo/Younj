@@ -1,12 +1,12 @@
 # =========================================
 #!name= 🐾 Super VIP All-in-One - Khổng Mạnh Yên 👑
-#!desc= Mô-đun gộp tất cả sức mạnh: Mở khóa Premium cho VSCO (200+ màu), SoundCloud Go+ (nghe nhạc cực chill), Alight Motion (Full hiệu ứng), CamScanner (Scan nét căng) & Bypass RevenueCat tổng hợp. Đã fix lỗi, chuẩn chỉ từng dòng. Tất cả trong 1 by Khổng Mạnh Yên! 🚀✨
+#!desc= Mô-đun gộp tất cả sức mạnh: Mở khóa Premium cho Picsart Chỉnh sửa ảnh video, SoundCloud Go+ (nghe nhạc cực chill), Alight Motion (Full hiệu ứng), CamScanner (Scan nét căng) & Bypass RevenueCat tổng hợp. Đã fix lỗi, chuẩn chỉ từng dòng. Tất cả trong 1 by Khổng Mạnh Yên! 🚀✨
 #!author= Mạnh Yên (oi younj day.) 💞
 #!tag= Unlock All App Premium
 # 💬 Web: https://beacons.ai/o.oyen  
 # 💬 Discord: https://younj.io.vn
 # 🫆 Tạo bởi: Khổng Mạnh Yên 🐥 (Younj OS)
-#!version= 3.0 (Version New lỏ😂)
+#!version= 3.4 (Version New lỏ😂)
 # =========================================
 # 🍃 Module này mình tự tìm hiểu và làm ra xin đừng ăn cắp. Mình biết rằng đã có rất nhiều người đã làm ra rồi nhưng modules này mình đã tự mày mò mới có thể tạo ra được nên xin đừng Nói gì ạ 😮‍💨
 
@@ -17,17 +17,34 @@ tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
 user-agent = Locket/1.0.0 (iPhone; iOS 26; Scale/3.00)
 
 [Rule]
+# >>> Chặn Quảng Cáo & Theo Dõi PicsArt <<<
+DOMAIN-SUFFIX,ads.mopub.com,REJECT
+DOMAIN-SUFFIX,ads.mediation.mopub.com,REJECT
+DOMAIN-SUFFIX,app-measurement.com,REJECT
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,google-analytics.com,REJECT
+DOMAIN-SUFFIX,adjust.com,REJECT
+DOMAIN-SUFFIX,branch.io,REJECT
+DOMAIN-SUFFIX,appsflyer.com,REJECT
+DOMAIN-SUFFIX,crashlytics.com,REJECT
+DOMAIN-SUFFIX,facebook.com,REJECT
+DOMAIN-SUFFIX,facebook.net,REJECT
+DOMAIN-SUFFIX,segment.io,REJECT
+DOMAIN-SUFFIX,amplitude.com,REJECT
+DOMAIN-SUFFIX,statsig.com,REJECT
+
 # >>> CamScanner Rules <<<
 DOMAIN-SUFFIX,intsig.net,MITM
 DOMAIN-SUFFIX,camscanner.com,MITM
 
 [Script]
-# >>> CHUNG / KHONG MANH YEN (Younj) <<<
+# >>> CHUNG / REVENUECAT (Younj) <<<
 revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.*\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/ienyeyo/Younj/main/Scripts/Locket.js, requires-body=true, max-size=-1, timeout=120
 deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.*\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/ienyeyo/Younj/main/Scripts/Header.js, timeout=120
 
-# >>> VSCO PREMIUM <<<
-VSCO = type=http-request, pattern=^https://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$), script-path=https://raw.githubusercontent.com/ienyeyo/Younj/main/Scripts/Vsco.js, requires-body=true, timeout=5
+# >>> PICSART PREMIUM <<<
+PicsArt = type=http-request,pattern=^https:\/\/api\.picsart\.com\/gw-v2\/shop\/subscription\/apple\/purchases,script-path=https://raw.githubusercontent.com/ienyeyo/Younj/main/Scripts/Picsart.js,requires-body=true,timeout=60
 
 # >>> SOUNDCLOUD GO+ <<<
 SoundCloudGo+ = type=http-response, pattern=https://api-mobile.soundcloud.com/configuration/ios, requires-body=1, script-path=https://raw.githubusercontent.com/ienyeyo/Younj/main/Scripts/SoundCloud.js
@@ -39,4 +56,4 @@ AlightMotion = type=http-response, pattern=https://us-central1-alight-creative.c
 Camscanner = type=http-response, pattern=https:\/\/(api|api-cs.*)\.intsig\.net\/purchase\/cs\/query_prop, requires-body=1, script-path=https://raw.githubusercontent.com/ienyeyo/Younj/main/Scripts/CamScanner.js
 
 [MITM]
-hostname = api.revenuecat.com, buy.itunes.apple.com, api-mobile.soundcloud.com, us-central1-alight-creative.cloudfunctions.net, ap*.intsig.net, api.intsig.net, api-cs.intsig.net, raw.githubusercontent.com, locketcamera.com
+hostname = api.revenuecat.com, buy.itunes.apple.com, api-mobile.soundcloud.com, us-central1-alight-creative.cloudfunctions.net, ap*.intsig.net, api.intsig.net, api-cs.intsig.net, raw.githubusercontent.com, locketcamera.com, api.picsart.com, *.picsart.com
