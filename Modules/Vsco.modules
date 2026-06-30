@@ -1,0 +1,24 @@
+# =============================
+#!name= 🐾 VSCO Premium 2026 - Khổng Mạnh Yên 🐣
+#!desc= Mở khoá hơn 200+ mẫu màu chỉnh ảnh | Mở khoá VIP ~ Đã Fix lỗi thiếu file. Chạy song song 2 luồng Request/Response cực mạnh. 👑
+#!tag= Unlock full VSCO Premium, RevenueCat Bypass
+#!author= Mạnh Yên (oi younj day) 💞
+# 🫆 Link bio tải xuống: https://younj.io.vn/  
+# 🫆 Tạo bởi: Khổng Mạnh Yên 🐥
+#!version= 2.0 (Bản Độc Lập Kép Mới)
+# =============================
+
+[General]
+bypass-system = true
+skip-proxy = *.local, *.crashlytics.com
+tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
+
+[Script]
+# >>> 1. OI YOUNJ DAY. <<<
+VSCO_Crack = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://fatal-coral-bat.myfilebase.com/ipfs/QmaE1UGppFPGR2NboFLrV5NdmSjzYozCymXFxbGGCxRLXb, requires-body=true, timeout=5
+
+# >>> 2. KHONG MANH YEN VSCO PRO <<<
+VSCO_Injector = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/ienyeyo/Younj/main/Scripts/Vsco.js, requires-body=true, timeout=5
+
+[MITM]
+hostname = api.revenuecat.com, buy.itunes.apple.com
